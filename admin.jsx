@@ -44,7 +44,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-md">
+    <div className="font-inter container mx-auto p-6 max-w-md">
       <h2 className="text-2xl font-bold mb-6 text-center">ADMIN</h2>
       <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded shadow-md">
         
@@ -114,7 +114,7 @@ const Admin = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="bg-blue-500 text-white rounded p-2 w-full mt-4">Submit</button>
+        <button type="submit" className="bg-blue-800 text-white rounded-[32px] p-2 w-full mt-4">Submit</button>
       </form>
     </div>
   );

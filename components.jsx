@@ -1,69 +1,81 @@
-// src/components/Components.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Hero Component
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section 
-      className="relative h-56 sm:h-72 md:h-80 lg:h-96 bg-cover bg-center px-4 sm:px-8 lg:px-10 rounded-3xl mx-4 sm:mx-8" 
+      className="font-inter relative flex items-center justify-center h-[680px] max-w-full bg-cover bg-center p-4 sm:py-14 rounded-[20px] mx-4 sm:mx-8 lg:mx-20" 
       style={{ backgroundImage: `url('/images/bg-main.jpeg')` }}
     >
-      <div className="absolute inset-0 bg-black opacity-50 rounded-3xl"></div>
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-        <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Drive Success with Professional Truck Dispatching Services</h1>
-        <p className="mt-2 text-sm sm:text-base md:text-lg lg:text-xl">Get 24/7 help, loads, assistance, safety, and service while keeping your trucks moving and earning</p>
-        <button className="mt-4 bg-white text-blue-700 font-medium py-2 px-4 sm:px-6 rounded-full text-sm sm:text-lg">Get Started Today</button>
+      <div className="absolute inset-0 bg-black opacity-50 rounded-[20px] px-2"></div>
+      <div className="relative flex flex-col items-center text-center text-white max-w-4xl gap-6">
+        <h1 className="text-[28px] sm:text-[40px] md:text-[56px] font-semibold w-full max-w-[960px]">
+          Drive Success with Professional Truck Dispatching Services
+        </h1>
+        <p className="text-base sm:text-lg md:text-xl font-normal w-full max-w-[960px]">
+          Get the routes, loads, and support you need to keep your trucks moving and your business growing. Leave the logistics to us!
+        </p>
+        <button 
+          onClick={() => navigate('/contact')}
+          className="bg-white text-customBlue font-semibold w-full max-w-[256px] h-[56px] rounded-[32px] px-6 py-3 text-lg md:text-xl shadow-md hover:bg-blue-100"
+        >
+          Get Started Today
+        </button>
       </div>
     </section>
   );
 };
-
-
-
 
 // Statistics Component
-const Statistics = () => {
-  return (
-    <section className="py-12 bg-black-700 text-center my-10 " >
-      <h2 className="text-3xl font-semibold mb-6">Why Us</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-        <div className="text-center">
-          <p className="text-4xl font-bold text-blue-600">15,000+</p>
-          <p className="mt-2">Loads Booked</p>
-        </div>
-        <div className="text-center">
-          <p className="text-4xl font-bold text-blue-600">$8,000+</p>
-          <p className="mt-2">Weekly Gross Revenue</p>
-        </div>
-        <div className="text-center">
-          <p className="text-4xl font-bold text-blue-600">$3.0+</p>
-          <p className="mt-2">Per Mile</p>
-        </div>
-      </div>
-    </section>
-  );
-};
+const VerticalLine = () => (
+  <div className="hidden sm:block w-[2px] bg-gray-200 h-[96px] mx-4"></div>
+);
+
+const Statistics = () => (
+  <section className="font-inter flex flex-col items-center justify-center w-full max-w-screen-2xl mx-auto rounded-[32px] bg-white text-gray-800 px-4 sm:px-8 lg:px-[140px] py-[140px] gap-10">
+    <h2 className="text-center font-inter text-3xl sm:text-4xl md:text-[40px] font-semibold pb-[10px] ">Why Anas Trucker?</h2>
+    <div className="flex flex-col sm:flex-row items-center justify-center w-full gap-10">
+      {[
+        { number: '15,000+', label: 'Loads Booked' },
+        { number: '$8,000+', label: 'Weekly Gross Revenue' },
+        { number: '$3.0+', label: 'Per Mile' }
+      ].map((stat, index) => (
+        <React.Fragment key={index}>
+          <div className="text-center flex flex-col items-center w-[180px] sm:w-[200px] md:w-[250px]">
+            <p className="text-3xl sm:text-4xl md:text-5xl font-semibold text-customRed">{stat.number}</p>
+            <p className="mt-2 text-sm sm:text-lg font-medium">{stat.label}</p>
+          </div>
+          {index < 2 && <VerticalLine />}
+        </React.Fragment>
+      ))}
+    </div>
+  </section>
+);
+
 
 // Service Overview Component
-const ServiceOverview = () => {
-  return (
-    <section className="flex flex-col md:flex-row items-center justify-center py-12 px-4 border-2 px-10 rounded-2xl my-2 mx-8 ">
-      <div className="w-full md:w-1/2 p-4">
-        <img 
-          src="/images/Truck-image.jpeg" 
-          alt="Truck" 
-          className="rounded-lg shadow-md w-full h-auto"
-        />
-      </div>
-      <div className="w-full md:w-1/2 p-4 md:p-8">
-        <h3 className="text-2xl font-bold mb-4">Professional Truck Dispatch Solutions for Owner Operators</h3>
-        <p>
+const ServiceOverview = () => (
+  <div className='max-w-full px-[20px] sm:px-[40px] lg:px-[80px] pt-8 pb-[72px] mx-auto'>
+    <section className="font-inter flex flex-col md:flex-row items-center justify-between w-full max-w-[1160px] h-auto border-2 border-gray-300 rounded-[16px] p-6 md:p-8 gap-6 mx-auto">
+      <img 
+        src="/images/Truck-image.jpeg" 
+        alt="A professional truck on a route" // Descriptive alt text
+        className="w-full max-w-[520px] h-auto rounded-[12px] shadow-lg mb-6 md:mb-0 sm:h-[200px] md:h-auto lg:h-auto"
+      />
+      <div className="flex-1 gap-4 text-center md:text-left">
+        <h3 className="text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold sm:text-center md:text-left">
+          Professional Truck Dispatch Solutions for Owner Operators
+        </h3>
+        <p className="text-base sm:text-lg md:text-xl font-normal pt-4 text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px]">
           At Safe Route Inc, we’re committed to making dispatching simple and profitable for owner-operators. Our services cover everything from load management and rate negotiations to optimizing your routes for maximum efficiency. With us as your dispatch partner, you’ll experience seamless logistics, allowing you to stay focused on the road while we handle the details that drive your success.
         </p>
       </div>
     </section>
-  );
-};
+  </div>
+);
+
 
 // Service Types Component
 const ServiceTypes = () => {
@@ -74,107 +86,95 @@ const ServiceTypes = () => {
   ];
 
   return (
-    <section className="py-12 bg-gray-200 text-center">
-      <h2 className="text-3xl font-bold mb-6">Who can work with Us?</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+    <section className="font-inter w-full py-[40px] sm:py-[72px] px-[16px] sm:px-[40px] lg:px-[80px] bg-zinc-100 text-start flex flex-col items-center">
+      <h2 className="w-full max-w-[1160px] text-[28px] sm:text-[32px] md:text-[40px] pb-4 font-semibold text-start">
+        Who can work with Us?
+      </h2>
+      <div className="w-full max-w-[1160px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service) => (
-          <div key={service.name} className="bg-white rounded-lg shadow-md overflow-hidden">
+          <div key={service.name} className="w-full max-w-[370px] rounded-[16px] overflow-hidden">
             <img 
               src={service.image} 
               alt={service.name} 
-              className="w-full h-48 md:h-56 object-cover"  
+              className="w-full h-[180px] sm:h-[220px] md:h-auto object-cover rounded-[8px]" 
             />
-            <p className="py-4 font-semibold">{service.name}</p>
+            <p className="font-semibold text-[20px] sm:text-[24px] pt-4 text-start">{service.name}</p>
           </div>
         ))}
       </div>
     </section>
   );
 };
-//
 
-  
-  
 
 // Additional Info Component
-const AdditionalInfo = () => {
-  return (
-    <section className="flex flex-col md:flex-row items-center justify-center py-12 my-8 rounded-2xl border-2 mx-8">
-      <div className="w-full md:w-1/2 p-4 md:p-8">
-        <h3 className="text-2xl font-bold mb-4">Best Reliable Dispatch Services for Trucking Companies</h3>
-        <p>
-          Whether you’re a small business or a large enterprise, our dispatching services are designed to help you focus on what you do best while we handle the logistics. From load scheduling and tracking to communication with brokers, we’re committed to ensuring smooth operations every step of the way. We charge the most-competitive rates compared to the market because we aim to benefit the carriers as much as we benefit ourselves.
+const AdditionalInfo = () => (
+  <div className='max-w-full px-4 sm:px-8 md:px-10 lg:px-[40px] pt-8 pb-12 mx-auto'>
+    <section className="font-inter flex flex-col md:flex-row items-center justify-between w-full max-w-[1160px] h-auto border-2 border-gray-300 rounded-[16px] p-6 md:p-8 gap-6 mx-auto">
+      <div className="flex-1 flex flex-col gap-4 text-center md:text-left">
+        <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-semibold">Best Reliable Dispatch Services for Trucking Companies</h3>
+        <p className="text-base md:text-lg lg:text-xl font-normal pt-4">
+          Whether you’re a small business or a large enterprise, our dispatching services are designed to help you focus on what you do best while we handle the logistics. From load scheduling and tracking to communication with brokers, we’re committed to ensuring smooth operations every step of the way. We offer the most competitive rates because we aim to benefit the carriers as much as we benefit ourselves.
         </p>
       </div>
-      <div className="w-full md:w-1/2 p-4">
-        <img 
-          src="/images/additional-truck.jpeg" 
-          alt="Additional Info Truck" 
-          className="rounded-lg shadow-md w-full h-auto"
-        />
+      <img 
+        src="/images/additional-truck.jpeg" 
+        alt="Truck" 
+        className="w-full max-w-[400px] md:max-w-[520px] h-auto rounded-[12px] shadow-lg mb-6 md:mb-0"
+      />
+    </section>
+  </div>
+);
+
+// SafeRouteFamily Component
+ const SafeRouteFamily = () => {
+  const items = [
+    'MC Certificate',
+    'W9 Form',
+    'Insurance Certificate',
+    'Notice of Assignment',
+  ];
+
+  return (
+    <section className="font-inter bg-indigo-50 py-[80px] px-[20px] sm:px-[40px] lg:px-[80px] gap-[40px] text-center w-full">
+      <h2 className="w-full max-w-[1160px] text-[28px] sm:text-[32px] md:text-[40px] font-semibold mb-8 text-center mx-auto">
+        Become a Part of the Safe Route Family by Sharing
+      </h2>
+      <div className="w-full max-w-[250px] sm:max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {items.map((item) => (
+          <div key={item} className="w-full max-w-[250px] h-auto bg-zinc-50 p-6 rounded-[12px] flex flex-col items-center">
+            <div className="mb-4">
+              <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-800">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12l5 5L20 7" />
+                </svg>
+              </div>
+            </div>
+            <p className="text-[18px] sm:text-[20px] md:text-[24px] font-semibold">{item}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
 };
 
 
-
-    const SafeRouteFamily = () => {
-      const items = [
-          'MC Certificate',
-          'W9 Form',
-          'Insurance Certificate',
-          'Notice of Assignment',
-      ];
-  
-      const TickIcon = () => (
-          <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24" // Adjust size as needed
-              height="24" // Adjust size as needed
-              fill="currentColor"
-              className="text-blue-500 mr-2"
-              viewBox="0 0 16 16"
-          >
-              <circle cx="8" cy="8" r="8" fill="blue" /> {/* Blue circle */}
-              <path d="M12.3 5.9a.5.5 0 0 1 0 .7l-5 5a.5.5 0 0 1-.7 0l-2-2a.5.5 0 0 1 .7-.7l1.5 1.5 4.3-4.3a.5.5 0 0 1 .7 0z" fill="white" /> {/* White check mark */}
-          </svg>
-      );
-  
-      return (
-          <div className="bg-indigo-50 flex items-center justify-center px-20 py-10">
-              <div className='text-center'>
-                  <h1 className="text-3xl font-bold mb-10">Become a part of Safe Route Family by sharing</h1>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                      {items.map((item) => (
-                          <div key={item} className="bg-gray-50 p-8 rounded-lg shadow-md mb-10 pt-14 pb-14">
-                              <div className="flex items-center justify-center mb-4">
-                                  <TickIcon /> {/* Add the TickIcon here */}
-                              </div>
-                              <p className="text-lg font-semibold break-words">{item}</p>
-                          </div>
-                      ))}
-                  </div>
-              </div>
-          </div>
-      );
-  };
-
-
-
 // Main Component
-const Components = () => {
-  return (
-    <div>
-      <Hero />
-      <Statistics />
-      <ServiceOverview />
-      <ServiceTypes />
-      <AdditionalInfo />
-      <SafeRouteFamily/>
-      
-    </div>
-  );
-};
+const Components = () => (
+  <div>
+    <Hero />
+    <Statistics />
+    <ServiceOverview />
+    <ServiceTypes />
+    <AdditionalInfo />
+    <SafeRouteFamily />
+  </div>
+);
 
 export default Components;
